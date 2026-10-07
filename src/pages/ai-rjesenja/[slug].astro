@@ -3,12 +3,10 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTA from '../../components/CTA.astro';
 
-const allowed = new Set(['ai-chatbot', 'ai-asistent', 'ai-automatizacija']);
-
 export async function getStaticPaths() {
   const entries = await getCollection('usluge', ({ data }) => !data.draft);
   return entries
-    .filter((entry) => allowed.has(entry.id))
+    .filter((entry) => ['ai-chatbot', 'ai-asistent', 'ai-automatizacija'].includes(entry.id))
     .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
 
