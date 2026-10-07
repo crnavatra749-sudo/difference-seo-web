@@ -3,7 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import CTA from '../../components/CTA.astro';
 
-const allowed = new Set(['web-stranice-za-obrte', 'web-stranice-za-tvrtke']);
+allowed.has(entry.id)
 
 export async function getStaticPaths() {
   const entries = await getCollection('usluge', ({ data }) => !data.draft);
