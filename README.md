@@ -13,15 +13,6 @@ npm run dev
 
 ```bash
 npm run build
-npm run preview
 ```
 
-Netlify uses `npm run build` and publishes `dist/`. Pushes to the connected GitHub repository trigger automatic deployments.
-
-## Content
-
-- `src/content/usluge/` — service pages
-- `src/content/projekti/` — project pages
-- `src/content/vodic/` — Digitalni vodič articles
-
-Add a new Markdown/MDX content entry and the corresponding dynamic route will be generated automatically.
+The project uses Astro content collections with explicit `glob()` loaders so the build is compatible with current Astro versions.
