@@ -1,0 +1,11 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+const { title = 'BrandistiQ — Digitalna rješenja', description = 'SEO, web, AI i web aplikacije za poduzetnike i tvrtke u Hrvatskoj.', image = '/og-default.svg', type = 'website' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, 'https://difference-usluge.com.hr');
+const breadcrumbItems = Astro.props.breadcrumbs ?? [];
+const imageUrl = new URL(image, 'https://difference-usluge.com.hr');
+---
+<!doctype html><html lang="hr"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="theme-color" content="#07090d" /><title>{title}</title><meta name="description" content={description} /><link rel="canonical" href={canonical} /><meta property="og:type" content={type} /><meta property="og:locale" content="hr_HR" /><meta property="og:site_name" content="BrandistiQ" /><meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:url" content={canonical} /><meta property="og:image" content={imageUrl} /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content={title} /><meta name="twitter:description" content={description} /><meta name="twitter:image" content={imageUrl} /><script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"Organization","name":"BrandistiQ","url":"https://difference-usluge.com.hr/","description":description,"brand":{"@type":"Brand","name":"BrandistiQ"}})}></script>{breadcrumbItems.length > 0 && <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":breadcrumbItems.map((item, index) => ({"@type":"ListItem","position":index+1,"name":item.name,"item":new URL(item.url,'https://difference-usluge.com.hr').toString()}))})}></script>}
+</head><body><Header /><main><slot /></main><Footer /></body></html>

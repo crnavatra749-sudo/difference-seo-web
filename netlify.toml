@@ -1,0 +1,24 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/usluge/ai-chatbot/"
+  to = "/ai-rjesenja/ai-chatbot/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/usluge/ai-asistent/"
+  to = "/ai-rjesenja/ai-asistent/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/usluge/ai-automatizacija/"
+  to = "/ai-rjesenja/ai-automatizacija/"
+  status = 301
+  force = true

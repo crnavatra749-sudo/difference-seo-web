@@ -1,0 +1,1 @@
+{"name":"difference-usluge","type":"module","version":"0.1.0","scripts":{"dev":"astro dev","build":"npm run validate && astro build","preview":"astro preview","validate":"node scripts/validate-content.mjs"},"dependencies":{"@astrojs/sitemap":"latest","astro":"latest"},"devDependencies":{}}

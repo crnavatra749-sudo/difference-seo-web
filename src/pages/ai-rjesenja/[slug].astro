@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+
+const allowed = new Set(['ai-chatbot', 'ai-asistent', 'ai-automatizacija']);
+
+export async function getStaticPaths() {
+  const entries = await getCollection('usluge', ({ data }) => !data.draft);
+  return entries
+    .filter((entry) => allowed.has(entry.id))
+    .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<BaseLayout
+  title={`${entry.data.title} | BrandistiQ`}
+  description={entry.data.description}
+  breadcrumbs={[
+    { name: 'Početna', url: '/' },
+    { name: 'AI rješenja', url: '/ai-rjesenja/' },
+    { name: entry.data.title, url: `/ai-rjesenja/${entry.id}/` },
+  ]}
+>
+  <article class="article-page">
+    <div class="container article-wrap">
+      <div class="eyebrow">BrandistiQ · AI rješenje</div>
+      <h1>{entry.data.title}</h1>
+      <p class="article-lead">{entry.data.description}</p>
+      <div class="article-body"><Content /></div>
+      <CTA title="Želite razgovarati o projektu?" text="Pošaljite nam osnovne informacije o projektu. Zajedno možemo definirati prvi konkretan korak." />
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,11 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+const entry = await getEntry('usluge', 'google-business');
+if (!entry) throw new Error('Missing content');
+const { Content } = await render(entry);
+---
+<BaseLayout title={entry.data.title + ' | BrandistiQ'} description={entry.data.description}>
+<article class="article-page"><div class="container article-wrap"><div class="eyebrow">BrandistiQ · Usluga</div><h1>{entry.data.title}</h1><p class="article-lead">{entry.data.description}</p><div class="article-body"><Content /></div><CTA title="Želite razgovarati o projektu?" text="Pošaljite nam osnovne informacije. Zajedno možemo definirati prvi konkretan korak." /></div></article>
+</BaseLayout>

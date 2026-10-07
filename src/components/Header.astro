@@ -1,0 +1,23 @@
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="/" aria-label="BrandistiQ početna stranica">Brandisti<span>Q</span></a>
+    <nav class="desktop-nav" aria-label="Glavna navigacija">
+      <a href="/seo/">SEO</a><a href="/web-stranice/">Web</a><a href="/ai-rjesenja/">AI</a><a href="/web-aplikacije/">Web aplikacije</a><a href="/projekti/">Projekti</a><a href="/vodic/">Vodič</a>
+    </nav>
+    <a class="nav-cta" href="/kontakt/">Kontakt <span>↗</span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Otvori izbornik"><span></span><span></span></button>
+  </div>
+  <div id="mobile-menu" class="mobile-menu" hidden>
+    <a href="/seo/">SEO</a><a href="/web-stranice/">Web</a><a href="/ai-rjesenja/">AI</a><a href="/web-aplikacije/">Web aplikacije</a><a href="/projekti/">Projekti</a><a href="/vodic/">Digitalni vodič</a><a href="/o-nama/">O nama</a><a href="/kontakt/">Kontakt</a>
+  </div>
+</header>
+<script>
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.querySelector('#mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    if (menu) menu.hidden = open;
+    document.body.classList.toggle('menu-open', !open);
+  });
+</script>

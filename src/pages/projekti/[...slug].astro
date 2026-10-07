@@ -1,0 +1,13 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTA from '../../components/CTA.astro';
+export async function getStaticPaths() {
+ const entries=await getCollection('projekti',({data})=>!data.draft);
+ return entries.map(entry=>({params:{slug:entry.slug},props:{entry}}));
+}
+const {entry}=Astro.props; const {Content}=await render(entry);
+---
+<BaseLayout title={`${entry.data.title} | BrandistiQ`} description={entry.data.description}>
+<article class="article-page"><div class="container article-wrap"><div class="eyebrow">Projekt</div><h1>{entry.data.title}</h1><p class="article-lead">{entry.data.description}</p><div class="article-body"><Content /></div><CTA title="Imate sličnu ideju?" text="Razgovarajmo o tome kako je možemo pretvoriti u funkcionalno digitalno rješenje." /></div></article>
+</BaseLayout>
